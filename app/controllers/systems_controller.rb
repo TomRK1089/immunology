@@ -6,4 +6,7 @@ class SystemsController < ApplicationController
     @system = System.find_by(id: 1)
     @viri = Virus.all
   end
+
+  def pyrogenation
+  end
 end

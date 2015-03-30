@@ -12,7 +12,6 @@ class Virus < ActiveRecord::Base
   belongs_to :system
   belongs_to :cell
 
-  validates_inclusion_of :status, :in => STATUSES.keys
   validates_presence_of :system_id
 
   def status_name

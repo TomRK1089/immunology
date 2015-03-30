@@ -7,6 +7,7 @@ class System < ActiveRecord::Base
     COMPROMISED => "compromised"
   }
 
+  belongs_to :user
   has_many :cells
   has_many :viri
 

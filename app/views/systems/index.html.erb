@@ -1,6 +1,9 @@
 <div class="row">
   <div class="large-12">
-<h1> your immune system is currently <%= @system.status_name %> </h1>
+<h2> greetings <%= current_user.username %></h2>
+<h1> your immune system is currently <%= @system.status %> </h1><br>
+      <div><%= link_to "generate cells", new_system_cell_path(@system) %></div>
+      <div><%= link_to "activate pyrogenation", new_system_cell_path(@system) %></div>
 
     <h1>system status</h1>
         <table>
@@ -33,11 +36,11 @@
           <td><%= @cells.count %></td>
           <% antigens = 0 %>
           <% antibodies = 0 %>
-          <%= @cells.each do |cell| %>
-            <% if cell.status == antigen %>
+          <% @cells.each do |cell| %>
+            <% if cell.status == "antigen" %>
               <% antigens += 1 %>
-            <% elsif cell.status == antibody %>
-              <%= antibodies += 1 %>
+            <% elsif cell.status == "antibody" %>
+              <% antibodies += 1 %>
             <% end %>
           <% end %>
           <td><%= "#{(antigens/@cells.count)*100}%" %></td>
@@ -63,12 +66,12 @@
             <% lysogenic = 0 %>
             <% lytic = 0 %>
             <% @viri.each do |virus| %>
-              <% if virus.status_name = "latent" %>
-              <%  latent += 1 %>
-              <% elsif virus.status_name = "lysogenic" %>
-              <%  lysogenic += 1 %>
-              <% elsif virus.status_name = "lytic" %>
-              <%  lytic += 1 %>
+              <% if virus.status == "latent" %>
+                <%  latent += 1 %>
+              <% elsif virus.status == "lysogenic" %>
+                <%  lysogenic += 1 %>
+              <% elsif virus.status == "lytic" %>
+                <%  lytic += 1 %>
               <% end %>
             <% end %>
             <td><%= "#{(lysogenic/@viri.count)*100}%" %></td>
@@ -76,5 +79,6 @@
             <td><%= "#{(latent/@viri.count)*100}%" %></td>
           </tr>
       </table>
+
   </div>
 </div>

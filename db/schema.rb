@@ -24,18 +24,22 @@ ActiveRecord::Schema.define(version: 20150328225408) do
   end
 
   create_table "systems", force: :cascade do |t|
-    t.string  "status",          null: false
-    t.integer "memory",          null: false
-    t.boolean "differentiation", null: false
-    t.boolean "apoptosis",       null: false
-    t.boolean "pyrogenation",    null: false
+    t.string  "status",          default: "uncompromised"
+    t.integer "memory",          default: 0
+    t.boolean "differentiation", default: true
+    t.boolean "apoptosis",       default: false
+    t.boolean "pyrogenation",    default: false
+    t.integer "user_id",                                   null: false
   end
+
+  add_index "systems", ["user_id"], name: "index_systems_on_user_id", unique: true, using: :btree
 
   create_table "tests", force: :cascade do |t|
     t.string "nothing"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "username",                            null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -52,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150328225408) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "viri", force: :cascade do |t|
     t.text     "status",     default: "latent", null: false

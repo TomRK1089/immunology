@@ -6,6 +6,8 @@ class CreateSystems < ActiveRecord::Migration
       t.boolean :differentiation, default: true
       t.boolean :apoptosis, default: false
       t.boolean :pyrogenation, default: false
+      t.integer :user_id, null: false
     end
+    add_index :systems, :user_id, unique: true
   end
 end
