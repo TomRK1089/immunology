@@ -1,4 +1,14 @@
 require 'factory_girl'
+FactoryGirl.define do
+  factory :system do
+    status "uncompromised"
+    memory 0
+    differentiation true
+    apoptosis false
+    pyrogenation false
+  end
+end
+
 
 FactoryGirl.define do
   factory :user do

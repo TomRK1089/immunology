@@ -3,31 +3,6 @@
 <h1> your immune system is currently <%= @system.status_name %> </h1>
 
     <h1>system status</h1>
-      <table>
-        <tr>
-          <th>cells</th>
-          <th>antigens</th>
-          <th>antibodies</th>
-          <th></th>
-        </tr>
-
-        <tr>
-          <td><%= @cells.count %></td>
-          <% antigens = 0 %>
-          <% antibodies = 0 %>
-          <%= @cell.each do |cell| %>
-            <% if cell.status == antigens %>
-              <% antigens += 1 %>
-            <% elsif cell.status == antibodies %>
-              <%= antibodies += 1 %>
-            <% end %>
-          <% end %>
-          <td><%= "#{(antigens/@cells.count)*100}%" %></td>
-          <td><%= "#{(antibodies/@cells.count)*100}%" %></td>
-        </tr>
-    </table>
-
-    <h1>immune status</h1>
         <table>
           <tr>
             <th>differentiation</th>
@@ -45,11 +20,37 @@
           </tr>
       </table>
 
+    <h1>cell status</h1>
+      <table>
+        <tr>
+          <th>cells</th>
+          <th>antigens</th>
+          <th>antibodies</th>
+          <th></th>
+        </tr>
+
+        <tr>
+          <td><%= @cells.count %></td>
+          <% antigens = 0 %>
+          <% antibodies = 0 %>
+          <%= @cell.each do |cell| %>
+            <% if cell.status == antigen %>
+              <% antigens += 1 %>
+            <% elsif cell.status == antibody %>
+              <%= antibodies += 1 %>
+            <% end %>
+          <% end %>
+          <td><%= "#{(antigens/@cells.count)*100}%" %></td>
+          <td><%= "#{(antibodies/@cells.count)*100}%" %></td>
+        </tr>
+    </table>
+
+
 
     <h1>virus status</h1>
         <table>
           <tr>
-            <th>viruses</th>
+            <th>viri</th>
             <th>lysogenic</th>
             <th>lytic</th>
             <th>latent</th>
@@ -57,22 +58,22 @@
           </tr>
 
           <tr>
-            <td><%= @viruses.count %></td>
+            <td><%= @viri.count %></td>
+            <% latent = 0 %>
             <% lysogenic = 0 %>
             <% lytic = 0 %>
-            <% latent = 0 %>
-            <% @viruses.each do |virus| %>
-              <% if virus.lysogenic? %>
-              <%  lysogenic += 1 %>
-              <% elsif virus.lytic? %>
-              <%  lytic += 1 %>
-              <% elsif virus.latent? %>
+            <% @viri.each do |virus| %>
+              <% if virus.status_name = "latent" %>
               <%  latent += 1 %>
+              <% elsif virus.status_name = "lysogenic" %>
+              <%  lysogenic += 1 %>
+              <% elsif virus.status_name = "lytic" %>
+              <%  lytic += 1 %>
               <% end %>
             <% end %>
-            <td><%= "#{(lysogenic/@viruses.count)*100}%" %></td>
-            <td><%= "#{(lytic/@viruses.count)*100}%" %></td>
-            <td><%= "#{(latent/@viruses.count)*100}%" %></td>
+            <td><%= "#{(lysogenic/@viri.count)*100}%" %></td>
+            <td><%= "#{(lytic/@viri.count)*100}%" %></td>
+            <td><%= "#{(latent/@viri.count)*100}%" %></td>
           </tr>
       </table>
   </div>

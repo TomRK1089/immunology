@@ -8,13 +8,8 @@ class System < ActiveRecord::Base
   }
 
   has_many :cells
-  has_many :viruses
+  has_many :viri
 
-  validates_inclusion_of :status, :in => STATUSES.keys
-  validate_presence_of :differentiation
-  validate_presence_of :memory
-  validate_presence_of :apoptosis
-  validate_presence_of :pyrogenation
 
   def status_name
     STATUSES[status]

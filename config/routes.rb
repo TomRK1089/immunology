@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'homes#index'
   resources :systems do
     resources :cells
-    resources :viruses
+    resources :viri
+  end
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,5 +1,19 @@
 class Cell < ActiveRecord::Base
-  belongs_to :system
+  ANTIBODY = 0
+  ANTIGEN = 1
 
-  validates_presence_of :state  
+  STATUSES = {
+    ANTIBODY => "antibody",
+    ANTIGEN => "antigen"
+  }
+
+  belongs_to :system
+  has_many :viri
+
+  validates_inclusion_of :status, :in => STATUSES.keys
+  validates_presence_of :system_id
+
+  def status_name
+    STATUSES[status]
+  end
 end

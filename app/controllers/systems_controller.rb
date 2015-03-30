@@ -3,7 +3,7 @@ class SystemsController < ApplicationController
 
   def index
     @cells = Cell.all
-    @system = system
-    @viruses = Virus.all
+    @system = System.find_by(id: 1)
+    @viri = Virus.all
   end
 end
