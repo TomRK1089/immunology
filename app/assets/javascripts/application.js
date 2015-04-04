@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require hover
+//= require onclick
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

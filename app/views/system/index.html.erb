@@ -1,6 +1,11 @@
 <div class="row">
   <div class="large-12">
 <h1> your immune system is currently <%= @system.status_name %> </h1>
+<h3><%= link_to "diffentiate", system_path %>
+  <%= link_to "build memory", system_virus_path,
+  :controller => :viri, :action => :edit %>
+  <%= link_to "initiate apoptosis", systems_cell_path,
+  :controller => :cells, :action => :destroy %>
 
     <h1>system status</h1>
         <table>
@@ -45,8 +50,6 @@
         </tr>
     </table>
 
-
-
     <h1>virus status</h1>
         <table>
           <tr>
@@ -76,5 +79,6 @@
             <td><%= "#{(latent/@viri.count)*100}%" %></td>
           </tr>
       </table>
+      <%= link_to "attempt vaccination", system_virus_path %>
   </div>
 </div>

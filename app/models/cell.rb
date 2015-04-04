@@ -10,7 +10,7 @@ class Cell < ActiveRecord::Base
   belongs_to :system
   has_many :viri
 
-  validates_presence_of :system_id
+  validates_presence_of :system
 
   def status_name
     STATUSES[status]

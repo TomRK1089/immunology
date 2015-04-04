@@ -2,8 +2,26 @@
   <div class="large-12">
 <h2> greetings <%= current_user.username %></h2>
 <h1> your immune system is currently <%= @system.status %> </h1><br>
-      <div><%= link_to "generate cells", new_system_cell_path(@system) %></div>
-      <div><%= link_to "activate pyrogenation", new_system_cell_path(@system) %></div>
+<h1> Turn#  <%= @system.order %> </h1><br>
+      <div>
+        <div id="parent"><%= link_to "generate B cells",
+          new_system_cell_path(@system) %> || <div id='popup'
+            style="display: none"> to combat the enemy viruses. CAREFUL though.
+            more cells risk greater subjugation from viruses.</div>
+        <div id="parent1"><%= link_to "activate pyrogenation",
+          system_path(@system), method: :PUT %> || <div id='popup1'
+            style="display: none"><%= "#{@system.pyrogenation} remaining. " %>
+            release pyrogens to induce fever. will reduce rate of
+            reproduction to both viruses and cells. ideal proliferation occurs
+            at 98.6º</div>
+            <% binding.pry %>
+        <div id="parent2"><%= link_to "initiate apoptosis",
+        { controller: :cells, action: :destroy, system_id: @system.id },
+        method: :delete  %> || <div id='popup2'
+          style='display: none'><%= "#{@system.apoptosis} remaining. " %>
+          programmed cell death. remove all antigenic cells.
+        </div>
+      </div>
 
     <h1>system status</h1>
         <table>
@@ -43,8 +61,14 @@
               <% antibodies += 1 %>
             <% end %>
           <% end %>
-          <td><%= "#{(antigens/@cells.count)*100}%" %></td>
-          <td><%= "#{(antibodies/@cells.count)*100}%" %></td>
+          <% if @cells.count != 0 %>
+            <td><%= "#{(antigens/@cells.count)*100}%" %></td>
+            <td><%= "#{(antibodies/@cells.count)*100}%" %></td>
+            <% else %>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+          <% end %>
         </tr>
     </table>
 
@@ -74,9 +98,15 @@
                 <%  lytic += 1 %>
               <% end %>
             <% end %>
-            <td><%= "#{(lysogenic/@viri.count)*100}%" %></td>
-            <td><%= "#{(lytic/@viri.count)*100}%" %></td>
-            <td><%= "#{(latent/@viri.count)*100}%" %></td>
+            <% if @viri.count != 0 %>
+              <td><%= "#{(lysogenic/@viri.count)*100}%" %></td>
+              <td><%= "#{(lytic/@viri.count)*100}%" %></td>
+              <td><%= "#{(latent/@viri.count)*100}%" %></td>
+            <% else %>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            <% end %>
           </tr>
       </table>
 

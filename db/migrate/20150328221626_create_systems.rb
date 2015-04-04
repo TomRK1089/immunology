@@ -3,9 +3,9 @@ class CreateSystems < ActiveRecord::Migration
     create_table :systems do |t|
       t.string :status, default: "uncompromised"
       t.integer :memory, default: 0
-      t.boolean :differentiation, default: true
-      t.boolean :apoptosis, default: false
-      t.boolean :pyrogenation, default: false
+      t.integer :differentiation, default: 10
+      t.integer :apoptosis, default: 3
+      t.integer :pyrogenation, default: 3
       t.integer :user_id, null: false
     end
     add_index :systems, :user_id, unique: true

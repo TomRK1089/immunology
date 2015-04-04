@@ -1,4 +1,6 @@
 class System < ActiveRecord::Base
+  include MyModules::Turn
+
   UNCOMPROMISED = 0
   COMPROMISED = 1
 
@@ -11,6 +13,8 @@ class System < ActiveRecord::Base
   has_many :cells
   has_many :viri
 
+
+  validates :user, presence: true
 
   def status_name
     STATUSES[status]

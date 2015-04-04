@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328225408) do
+ActiveRecord::Schema.define(version: 20150404171904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20150328225408) do
   create_table "systems", force: :cascade do |t|
     t.string  "status",          default: "uncompromised"
     t.integer "memory",          default: 0
-    t.boolean "differentiation", default: true
-    t.boolean "apoptosis",       default: false
-    t.boolean "pyrogenation",    default: false
+    t.integer "differentiation", default: 10
+    t.integer "apoptosis",       default: 3
+    t.integer "pyrogenation",    default: 3
     t.integer "user_id",                                   null: false
   end
 
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20150328225408) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",                            null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -52,11 +51,11 @@ ActiveRecord::Schema.define(version: 20150328225408) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "viri", force: :cascade do |t|
     t.text     "status",     default: "latent", null: false
