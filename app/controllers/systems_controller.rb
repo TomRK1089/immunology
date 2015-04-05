@@ -30,9 +30,9 @@ class SystemsController < ApplicationController
   end
 
   def destroy
-      @system = System.find_by(user: current_user)
+      @system = System.find(params[:id])
       @system.destroy
       flash[:notice] = 'disease is immunodeficient. system shut down'
-      redirect_to 'homes#index'
+      redirect_to "/"
   end
 end

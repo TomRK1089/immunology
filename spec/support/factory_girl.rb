@@ -1,17 +1,20 @@
 require 'factory_girl'
+
 FactoryGirl.define do
   factory :system do
+    user
     status "uncompromised"
     memory 0
-    differentiation true
-    apoptosis false
-    pyrogenation false
+    differentiation 10
+    apoptosis 3
+    pyrogenation 3
   end
 end
 
 
 FactoryGirl.define do
   factory :user do
+    system
     sequence(:username) {|n| "user#{n}" }
     sequence(:email) {|n| "user#{n}@example.com" }
     password 'password'

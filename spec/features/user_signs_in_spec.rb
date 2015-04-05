@@ -10,6 +10,7 @@ feature 'user signs in', %Q{
 
     visit new_user_session_path
 
+    fill_in 'username', with: 'personface'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
 
