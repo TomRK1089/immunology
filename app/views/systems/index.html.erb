@@ -14,9 +14,8 @@
             release pyrogens to induce fever. will reduce rate of
             reproduction to both viruses and cells. ideal proliferation occurs
             at 98.6º</div>
-            <% binding.pry %>
         <div id="parent2"><%= link_to "initiate apoptosis",
-        { controller: :cells, action: :destroy, system_id: @system.id },
+        { controller: :cells, action: :destroy, system_id: params[:id] },
         method: :delete  %> || <div id='popup2'
           style='display: none'><%= "#{@system.apoptosis} remaining. " %>
           programmed cell death. remove all antigenic cells.

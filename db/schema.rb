@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404171904) do
+ActiveRecord::Schema.define(version: 20150411160254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 20150404171904) do
     t.integer "apoptosis",       default: 3
     t.integer "pyrogenation",    default: 3
     t.integer "user_id",                                   null: false
+    t.string  "stage",           default: "innate"
+    t.integer "meta_points",     default: 30
+    t.integer "balance_points",  default: 0
   end
 
   add_index "systems", ["user_id"], name: "index_systems_on_user_id", unique: true, using: :btree
