@@ -16,7 +16,6 @@ class CellsController < ApplicationController
     end
 
     def destroy
-      binding.pry
       @system = System.find_by(user: current_user)
       @cells = Cell.where(system: @system, status: "antigen")
       unless @system.apoptosis == 0

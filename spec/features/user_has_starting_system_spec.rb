@@ -9,11 +9,11 @@ feature 'as a new user I want to start a new system' do
     sign_in_as(user)
     click_link "new game"
     click_button "initialize immune system"
-    expect(page).to have_content("greetings #{user.username}")
+    expect(page).to have_content("greetings")
     expect(page).to have_content("your immune system is currently uncompromised")
   end
   scenario 'only users can play' do
-    visit 'homes#index'
+    visit root_path
     expect(page).to have_content(
       'You need to sign in or sign up before continuing.'
     )

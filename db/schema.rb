@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411160254) do
+ActiveRecord::Schema.define(version: 20150411180249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20150411160254) do
     t.string  "status",          default: "uncompromised"
     t.integer "memory",          default: 0
     t.integer "differentiation", default: 10
-    t.integer "apoptosis",       default: 3
-    t.integer "pyrogenation",    default: 3
+    t.integer "apoptosis",       default: 0
+    t.integer "pyrogenation",    default: 0
     t.integer "user_id",                                   null: false
     t.string  "stage",           default: "innate"
     t.integer "meta_points",     default: 30
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20150411160254) do
   create_table "viri", force: :cascade do |t|
     t.text     "status",     default: "latent", null: false
     t.integer  "system_id",                     null: false
-    t.integer  "cell_id",                       null: false
+    t.integer  "cell_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

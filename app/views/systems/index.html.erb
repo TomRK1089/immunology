@@ -15,14 +15,12 @@
             reproduction to both viruses and cells. ideal proliferation occurs
             at 98.6º</div>
         <div id="parent2"><%= link_to "initiate apoptosis",
-        { action: "destroy", system_id: params[:id] },
-        method: :delete  %> || <div id='popup2'
+          system_cell_path(@system, @cells), action: :destroy %> ||
+        <div id='popup2'
           style='display: none'><%= "#{@system.apoptosis} remaining. " %>
           programmed cell death. remove all antigenic cells.
         </div>
       </div>
-
-      <%= link_to "delete this game", {action: "destroy", id: @game.id }, method: :delete, data: { confirm: "are you sure you want to delete this game?" } %>
 
     <h1>system status</h1>
         <table>

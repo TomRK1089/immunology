@@ -9,11 +9,9 @@ class System < ActiveRecord::Base
     COMPROMISED => "compromised"
   }
 
-
   belongs_to :user
   has_many :cells
   has_many :viri
-
 
   validates :user, presence: true
 
@@ -24,18 +22,19 @@ class System < ActiveRecord::Base
   def regulation
     viruses = Virus.where(system_id: id).count
     cells = Cell.where(system_id: id).count
-    while viruses > cells || balance_points > 0
-      cells += 1
-      balance_points -= 1
+    while viruses > cells || self.balance_points > 0
+      Cell.create(system_id: id)
+      self.balance_points -= 1
     end
     if viruses > cells
       self.status = "compromised"
     end
+    status
   end
 
   def innate_response(cytokines, macromolecules, phagocytes)
     if stage == "innate"
-      balance_points = cytokines
+      self.balance_points = cytokines
       antibodies -= macromolecules
       memory += (macromolecules/2)
     end

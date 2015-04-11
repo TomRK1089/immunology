@@ -6,11 +6,10 @@ FactoryGirl.define do
     status "uncompromised"
     memory 0
     differentiation 10
-    apoptosis 3
-    pyrogenation 3
+    apoptosis 0
+    pyrogenation 0
   end
 end
-
 
 FactoryGirl.define do
   factory :user do
@@ -19,5 +18,4 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
   end
-
 end

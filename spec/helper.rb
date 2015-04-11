@@ -4,7 +4,7 @@ def sign_up
   fill_in 'Password', with: 'password'
   fill_in 'Password confirmation', with: 'password'
   fill_in 'username', with: 'im a user'
-  click_button 'Sign up'
+  click_button 'sign up'
 
   expect(page).to have_content('Welcome! You have signed up successfully.')
   expect(page).to have_content('welcome to your system')
