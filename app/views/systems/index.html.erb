@@ -7,24 +7,22 @@
         <div id="parent"><%= link_to "generate B cells",
           new_system_cell_path(@system) %> || <div id='popup'
             style="display: none"> to combat the enemy viruses. CAREFUL though.
-            more cells risk greater subjugation from viruses.</div><br>
+            more cells risk greater subjugation from viruses.</div>
         <div id="parent1"><%= link_to "activate pyrogenation",
           system_path(@system), method: :PUT %> || <div id='popup1'
             style="display: none"><%= "#{@system.pyrogenation} remaining. " %>
             release pyrogens to induce fever. will reduce rate of
             reproduction to both viruses and cells. ideal proliferation occurs
-            at 98.6º</div><br>
-        <% if Cell.where(system: @system) != [] %>
-          <div id="parent2"><%= link_to "initiate apoptosis",
-          { controller: :cell, action: :destroy, system: @system },
-          method: :delete  %> || <div id='popup2'
-            style='display: none'><%= "#{@system.apoptosis} remaining. " %>
-            programmed cell death. remove all antigenic cells.
-          </div>
-        <% else %>
-          <div id="cell-less"><%= "no cells. o noes!" %></div>
-        <% end %>
+            at 98.6º</div>
+        <div id="parent2"><%= link_to "initiate apoptosis",
+        { action: "destroy", system_id: params[:id] },
+        method: :delete  %> || <div id='popup2'
+          style='display: none'><%= "#{@system.apoptosis} remaining. " %>
+          programmed cell death. remove all antigenic cells.
+        </div>
       </div>
+
+      <%= link_to "delete this game", {action: "destroy", id: @game.id }, method: :delete, data: { confirm: "are you sure you want to delete this game?" } %>
 
     <h1>system status</h1>
         <table>
@@ -75,8 +73,6 @@
         </tr>
     </table>
 
-
-
     <h1>virus status</h1>
         <table>
           <tr>
@@ -112,6 +108,5 @@
             <% end %>
           </tr>
       </table>
-
   </div>
 </div>
