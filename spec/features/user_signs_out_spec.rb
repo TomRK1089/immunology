@@ -15,7 +15,6 @@ feature 'user signs out', %Q{
 
     visit new_user_session_path
 
-    fill_in 'username', with: 'personface'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
 
@@ -24,6 +23,7 @@ feature 'user signs out', %Q{
     expect(page).to have_content('Signed in successfully')
 
     click_link 'Sign Out'
+    save_and_open_page
     expect(page).to have_content('Signed out successfully')
   end
 

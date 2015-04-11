@@ -16,10 +16,10 @@ class SystemsController < ApplicationController
     @system.user_id = current_user.id
     if @system.save
       100.times do
-        Cell.new(system: @system)
+        Cell.create(system: @system)
       end
       100.times do
-        Virus.new(system: @system)
+        Virus.create(system: @system)
       end
       flash[:notice] = "this one's name is
       #{Faker::Name.first_name}. keep it safe. good luck."
