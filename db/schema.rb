@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411180249) do
+ActiveRecord::Schema.define(version: 20150413152222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20150411180249) do
     t.datetime "updated_at"
   end
 
+  create_table "innates", force: :cascade do |t|
+    t.integer  "system_id",                   null: false
+    t.integer  "cytokines",       default: 0
+    t.integer  "macro_molecules", default: 0
+    t.integer  "phagocytes",      default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "innates", ["system_id"], name: "index_innates_on_system_id", unique: true, using: :btree
+
   create_table "systems", force: :cascade do |t|
     t.string  "status",          default: "uncompromised"
     t.integer "memory",          default: 0
@@ -30,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150411180249) do
     t.integer "apoptosis",       default: 0
     t.integer "pyrogenation",    default: 0
     t.integer "user_id",                                   null: false
-    t.string  "stage",           default: "innate"
+    t.text    "stage",           default: "innate"
     t.integer "meta_points",     default: 30
     t.integer "balance_points",  default: 0
   end

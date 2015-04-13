@@ -1,5 +1,4 @@
 class System < ActiveRecord::Base
-  include MyModules::Turn
 
   UNCOMPROMISED = 0
   COMPROMISED = 1
@@ -10,6 +9,7 @@ class System < ActiveRecord::Base
   }
 
   belongs_to :user
+  has_one :innate
   has_many :cells
   has_many :viri
 
@@ -30,13 +30,5 @@ class System < ActiveRecord::Base
       self.status = "compromised"
     end
     status
-  end
-
-  def innate_response(cytokines, macromolecules, phagocytes)
-    if stage == "innate"
-      self.balance_points = cytokines
-      antibodies -= macromolecules
-      memory += (macromolecules/2)
-    end
   end
 end

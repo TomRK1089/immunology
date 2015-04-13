@@ -1,0 +1,8 @@
+<div class= "cytokines-update">
+  <div class="cytokine">cytokines: <%= @innate.cytokines %>
+    <div class="cytokine+" id= "cyto-<%=@innate.system_id%>">
+      <%= link_to ("+"), system_innate_path(@system, @innate),
+        html_options = { remote: true, method: "put" } %>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'homes#index'
   resources :systems do
+    resources :innates
     resources :cells, except: [:show]
     resources :viri, only: [:index, :new, :create]
   end

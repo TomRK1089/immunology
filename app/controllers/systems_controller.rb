@@ -5,6 +5,7 @@ class SystemsController < ApplicationController
     @cells = Cell.all
     @system = System.find_by(user: current_user)
     @viri = Virus.all
+    @innate = Innate.find(@system)
   end
 
   def new
@@ -21,6 +22,7 @@ class SystemsController < ApplicationController
       100.times do
         Virus.create(system: @system)
       end
+      Innate.create(system: @system)
       flash[:notice] = "this one's name is
       #{Faker::Name.first_name}. keep it safe. good luck."
       redirect_to systems_path
