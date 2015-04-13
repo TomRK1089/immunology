@@ -1,14 +1,15 @@
 require 'factory_girl'
+
 FactoryGirl.define do
   factory :system do
+    user
     status "uncompromised"
     memory 0
-    differentiation true
-    apoptosis false
-    pyrogenation false
+    differentiation 10
+    apoptosis 0
+    pyrogenation 0
   end
 end
-
 
 FactoryGirl.define do
   factory :user do
@@ -17,5 +18,4 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
   end
-
 end

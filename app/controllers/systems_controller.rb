@@ -5,6 +5,7 @@ class SystemsController < ApplicationController
     @cells = Cell.all
     @system = System.find_by(user: current_user)
     @viri = Virus.all
+    @innate = Innate.find(@system)
   end
 
   def new
@@ -16,11 +17,12 @@ class SystemsController < ApplicationController
     @system.user_id = current_user.id
     if @system.save
       100.times do
-        Cell.new(system: @system)
+        Cell.create(system: @system)
       end
       100.times do
-        Virus.new(system: @system)
+        Virus.create(system: @system)
       end
+      Innate.create(system: @system)
       flash[:notice] = "this one's name is
       #{Faker::Name.first_name}. keep it safe. good luck."
       redirect_to systems_path
@@ -30,9 +32,9 @@ class SystemsController < ApplicationController
   end
 
   def destroy
-      @system = System.find_by(user: current_user)
+      @system = System.find(params[:id])
       @system.destroy
       flash[:notice] = 'disease is immunodeficient. system shut down'
-      redirect_to 'homes#index'
+      redirect_to "/"
   end
 end
